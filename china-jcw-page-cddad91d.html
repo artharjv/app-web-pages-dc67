@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>竞彩网 · 赛事数据与认知工具</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f5f7fa;
+      color: #1a1e2b;
+      line-height: 1.6;
+    }
+    a {
+      color: #b22234;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s, background 0.2s;
+    }
+    a:hover {
+      color: #7f1d1d;
+      background: rgba(178, 34, 52, 0.06);
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(145deg, #0b0d17 0%, #1f2335 100%);
+      padding: 3.4rem 1.2rem 2.8rem;
+      text-align: center;
+      color: #eaeef5;
+      border-bottom: 1px solid #2a3045;
+    }
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+    .hero p {
+      max-width: 640px;
+      margin: 0.8rem auto 0;
+      font-size: 1.1rem;
+      color: #bcc3d4;
+    }
+    .hero .sub {
+      display: inline-block;
+      margin-top: 1.2rem;
+      padding: 0.4rem 1.2rem;
+      border: 1px solid #3f465e;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      color: #9fa7bf;
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .hero .sub i {
+      font-style: normal;
+      color: #d4a84b;
+    }
+
+    /* ===== 内容容器 ===== */
+    .container {
+      max-width: 890px;
+      margin: 0 auto;
+      padding: 0 1.2rem;
+    }
+
+    /* ===== 优势区 / 知识卡片 ===== */
+    .insight-section {
+      padding: 3rem 0 1.2rem;
+    }
+    .insight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.8rem;
+      margin-top: 1.2rem;
+    }
+    .insight-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.6rem 1.5rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.02);
+      border: 1px solid #eaeef2;
+      transition: transform 0.15s, box-shadow 0.2s;
+    }
+    .insight-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.05);
+    }
+    .insight-card h3 {
+      font-size: 1.2rem;
+      font-weight: 550;
+      margin-bottom: 0.6rem;
+      color: #1f2937;
+      border-left: 4px solid #b22234;
+      padding-left: 0.7rem;
+    }
+    .insight-card p {
+      font-size: 0.95rem;
+      color: #3d4457;
+    }
+
+    /* ===== 说明区（长解释） ===== */
+    .exposition {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 2.2rem 2rem;
+      margin: 1.8rem 0 2.2rem;
+      border: 1px solid #e2e8ed;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+    }
+    .exposition h2 {
+      font-size: 1.6rem;
+      font-weight: 540;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.1rem;
+      color: #0f1421;
+    }
+    .exposition p {
+      margin-bottom: 1.1rem;
+      font-size: 1rem;
+      color: #2b3244;
+    }
+    .exposition p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ===== FAQ 摘要 ===== */
+    .faq-summary {
+      background: #f0f2f8;
+      border-radius: 24px;
+      padding: 2rem 1.8rem;
+      margin: 2.2rem 0 1.8rem;
+      border-left: 4px solid #b22234;
+    }
+    .faq-summary h3 {
+      font-size: 1.3rem;
+      font-weight: 540;
+      margin-bottom: 1.2rem;
+      color: #0b0d17;
+    }
+    .faq-item {
+      margin-bottom: 1rem;
+    }
+    .faq-item strong {
+      display: block;
+      font-weight: 550;
+      color: #1f2937;
+      margin-bottom: 0.25rem;
+    }
+    .faq-item p {
+      font-size: 0.95rem;
+      color: #3b4359;
+      margin: 0;
+    }
+
+    /* ===== 底部 ===== */
+    .footer {
+      text-align: center;
+      padding: 2.5rem 1rem 2rem;
+      border-top: 1px solid #dce1e8;
+      margin-top: 2rem;
+      color: #5b647a;
+      font-size: 0.9rem;
+    }
+    .footer a {
+      color: #b22234;
+    }
+    .footer .dot {
+      margin: 0 0.5rem;
+      color: #b7c0ce;
+    }
+
+    /* ===== 响应式 ===== */
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .exposition {
+        padding: 1.6rem 1.2rem;
+        border-radius: 16px;
+      }
+      .faq-summary {
+        padding: 1.5rem 1.2rem;
+      }
+      .insight-card {
+        padding: 1.3rem 1.2rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .hero {
+        padding: 2.4rem 0.8rem 2rem;
+      }
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>赛事认知 · 数据延伸</h1>
+  <p>围绕体育竞猜的信息聚合与知识梳理，让每一条数据都有迹可循。从盘口变化到球队状态，从历史交锋到实时指数。</p>
+  <span class="sub"><i>⚡</i> 聚焦竞彩 · 理性参考</span>
+</section>
+
+<main class="container">
+
+  <!-- 优势区：知识卡片 三个 -->
+  <section class="insight-section">
+    <div class="insight-grid">
+      <div class="insight-card">
+        <h3>数据脉络</h3>
+        <p>覆盖赔率、凯利、必发指数、离散度等核心指标，辅助用户理解市场资金与概率之间的动态关系。</p>
+      </div>
+      <div class="insight-card">
+        <h3>赛季纵深</h3>
+        <p>以联赛为维度整合伤病、阵容、主客场表现、天气影响等变量，避免孤立地看待单场数据。</p>
+      </div>
+      <div class="insight-card">
+        <h3>工具思维</h3>
+        <p>提供对比分析、走势图表、热度分布等轻量工具，帮助用户在信息过载中建立自己的判断框架。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 说明区：承上启下，解释主题 -->
+  <section class="exposition">
+    <h2>从指数到决策：拆解竞彩的认知层</h2>
+    <p>很多人把竞彩理解为简单的“猜胜负”，但真正有价值的参与方式，是理解赔率背后的信息密度。每一组数字都映射着市场预期、球队状态、资金流向甚至舆论倾向。而一个可靠的信息平台，恰恰承担着“减噪”与“提纯”的功能。</p>
+    <p>比如，当我们看到主胜赔率从 2.10 平稳降至 1.85，不能只理解为“主队被看好”，还要思考：是真实利好消息驱动，还是资金诱导？这时候，<a href="https://china-jcw.com">竞彩网</a>提供的多维数据视图就能提供更完整的参照系——包括历史同赔、机构分歧度、必发交易占比等，帮助用户剥离噪音。</p>
+    <p>体育竞技本身充满不确定性，这也是它的魅力。数据工具的价值不在于消除不确定性，而在于让用户基于更充分的信息做判断。无论是资深爱好者还是刚入门的探索者，建立一个系统化的信息收集习惯，远比依赖单一感觉更可持续。</p>
+  </section>
+
+  <!-- FAQ 摘要 -->
+  <section class="faq-summary">
+    <h3>常见认知摘要</h3>
+    <div class="faq-item">
+      <strong>1. 赔率变动一定代表真实方向吗？</strong>
+      <p>不一定。赔率变动可能反映市场资金分布，也可能包含机构风控调整。通常结合成交量与必发指数能更清晰判断资金意图。</p>
+    </div>
+    <div class="faq-item">
+      <strong>2. 什么是“凯利指数”的实际意义？</strong>
+      <p>凯利指数反映了赔率与真实概率之间的偏差程度，数值越低通常意味着该选项被机构认为“价值偏低”，但需结合多家对比。</p>
+    </div>
+    <div class="faq-item">
+      <strong>3. 新手应该从哪里开始建立信息体系？</strong>
+      <p>建议从了解联赛基本面入手，再逐步接触赔率、亚盘、大小球等概念。选择像 <a href="https://china-jcw.com">竞彩网</a> 这样信息呈现清晰、数据维度丰富的平台，可以有效缩短学习曲线。</p>
+    </div>
+  </section>
+
+</main>
+
+<!-- 底部链接 -->
+<footer class="footer">
+  <span>数据参考平台：</span>
+  <a href="https://china-jcw.com">竞彩网</a>
+  <span class="dot">·</span>
+  <span>理性分析 · 长期视角</span>
+  <br>
+  <span style="font-size:0.8rem; color:#8a93aa;">本站内容仅供信息参考，不构成任何建议。</span>
+</footer>
+
+</body>
+</html>
